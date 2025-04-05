@@ -24,13 +24,14 @@ public class Renamer {
       }
 
       Matcher matcher = pattern.matcher(f.getName());
+      String pathToFolder = f.getParent();
       int day = 0, month = 0, year = 0;
       if (matcher.find()) {
         day = Integer.parseInt(matcher.group(1));
         month = Integer.parseInt(matcher.group(2));
         year = Integer.parseInt(matcher.group(3));
-        String newName = String.format("%04d-%02d-%02d", year, month, day);
-        rename(f, new File(newName));
+        String newName = pathToFolder + "\\" + String.format("%04d-%02d-%02d", year, month, day);
+        this.rename(f, new File(newName));
       }
     }
   }
